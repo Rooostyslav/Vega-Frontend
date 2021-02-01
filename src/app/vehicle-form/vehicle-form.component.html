@@ -1,0 +1,52 @@
+<div class="container">
+    <h1>Create New Vehicle</h1>
+    <form action="Post">
+        <div class="form-group">
+            <label for="make">
+                <h5>Make</h5>
+            </label>
+            <select class="form-control" id="make" name="make" (change)="onMakeChange()" [(ngModel)]="vehicle.makeId">
+                <option value=""></option>
+                <option *ngFor="let make of makes" value="{{make.id}}">{{make.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="model">
+                <h5>Model</h5>
+            </label>
+            <select class="form-control" id="model" name="model" [(ngModel)]="vehicle.modelId">
+                <option value=""></option>
+                <option *ngFor="let model of models" value="{{model.id}}">{{model.name}}</option>
+            </select>
+        </div>
+        <h2>Features</h2>
+        <div *ngFor="let feature of features">
+            <label for="feature{{feature.id}}">
+                <input type="checkbox" id="feature{{feature.id}}">{{feature.name}}
+            </label>
+        </div>
+        <h3>Is this vehicle registered?</h3>
+        <div class="radio">
+            <label for="registered" class="radio-inline">
+                <input type="radio" name="isRegistered" value="true" id="registered">Yes
+            </label>
+            <label for="registered" class="radio-inline">
+                <input type="radio" name="isRegistered" value="false" id="notRegistered">No
+            </label>
+        </div>
+        <h2>Contact</h2>
+        <div class="form-group">
+            <label for="contacName">Name</label>
+            <input type="text" id="contactName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="contactPhone">Phone</label>
+            <input type="text" id="contactPhone" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="contacnEmail">Email</label>
+            <input type="text" id="contactEmail" class="form-control">
+        </div>
+        <button class="btn btn-primary">Save</button>
+    </form>
+</div>
