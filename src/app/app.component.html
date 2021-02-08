@@ -1,14 +1,26 @@
 <header>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light m-2">
         <div class="container-fruid">
             <a routerLink="" class="navbar-brand">Vega</a>
         </div>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a routerLink="/vehicles/new" class="nav-link">New Vehicle</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Vehicle
+                    </button>
+                    <div class="dropdown-menu">
+                        <a routerLink="vehicles" class="dropdown-item">Vehicles</a>
+                        <a routerLink="vehicles/new" class="dropdown-item">New Vehicle</a>
+                    </div>
+                </div>
             </li>
+
         </ul>
     </nav>
+
+    <ng2-toasty [position]="'top-right'"></ng2-toasty>
 </header>
 
 <router-outlet></router-outlet>

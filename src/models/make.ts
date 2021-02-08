@@ -1,7 +1,7 @@
 import { Model } from "./model";
 
-export class Make {
+export interface Make {
     id: number;
     name: string;
-    models: Array<Model>;
+    models: Model[];
 }

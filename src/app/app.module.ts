@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,6 +8,12 @@ import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { MakeService } from 'src/services/make.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FeatureService } from 'src/services/feature.service';
+import { VEGA_API_URL } from './app-injections-tokens';
+import { environment } from 'src/environments/environment';
+import { ContactService } from 'src/services/contact.service';
+import { VehicleService } from 'src/services/vehicle.service';
+import { ToastyModule } from 'ng2-toasty';
+import { AppErrorHandler } from './app.error-handler';
 
 @NgModule({
   declarations: [
@@ -18,11 +24,16 @@ import { FeatureService } from 'src/services/feature.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastyModule.forRoot()
   ],
   providers: [
     MakeService,
-    FeatureService
+    FeatureService,
+    ContactService,
+    VehicleService,
+    { provide: VEGA_API_URL, useValue: environment.vegaApi },
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
