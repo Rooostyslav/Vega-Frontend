@@ -11,8 +11,8 @@
                         Vehicle
                     </button>
                     <div class="dropdown-menu">
-                        <a routerLink="vehicles" class="dropdown-item">Vehicles</a>
-                        <a routerLink="vehicles/new" class="dropdown-item">New Vehicle</a>
+                        <a [routerLink]="['/vehicles']" class="dropdown-item">Vehicles List</a>
+                        <a [routerLink]="['/vehicles/new']" class="dropdown-item">New Vehicle</a>
                     </div>
                 </div>
             </li>

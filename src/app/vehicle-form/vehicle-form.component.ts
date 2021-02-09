@@ -63,7 +63,7 @@ export class VehicleFormComponent implements OnInit {
         this.populateModels();
       }, error => {
         if (error.status == 404) {
-          this.router.navigate(['vehicles/new']);
+          this.router.navigate(['vehicles']);
         }
       });
     }
@@ -71,7 +71,7 @@ export class VehicleFormComponent implements OnInit {
 
   private setVehicle(v: Vehicle) {
     this.vehicle.id = v.id;
-    this.vehicle.makeId = v.made.id;
+    this.vehicle.makeId = v.make.id;
     this.vehicle.modelId = v.model.id;
     this.vehicle.isRegistered = v.isRegistered;
     this.vehicle.contactId = v.contact.id
@@ -112,7 +112,7 @@ export class VehicleFormComponent implements OnInit {
             timeout: 5000
           });
 
-          this.router.navigate(['/vehicles/new']);
+          this.router.navigate(['/vehicles']);
         });
     }
     else if (confirm("Create new Vehicle?")) {
@@ -126,7 +126,7 @@ export class VehicleFormComponent implements OnInit {
             timeout: 5000
           });
 
-          this.router.navigate(['/vehicles/new']);
+          this.router.navigate(['/vehicles']);
         });
     }
 
@@ -144,7 +144,7 @@ export class VehicleFormComponent implements OnInit {
             timeout: 5000
           });
 
-          this.router.navigate(['/vehicles/new']);
+          this.router.navigate(['/vehicles']);
         });
     }
   }

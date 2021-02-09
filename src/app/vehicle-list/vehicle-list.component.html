@@ -1,0 +1,68 @@
+<div class="container">
+
+    <div>
+        {{filter | json}}
+    </div>
+
+    <div class="mb-2">
+        <h1>Vehicles</h1>
+        <button class="btn btn-primary" [routerLink]="['/vehicles/new']">New Vehicle</button>
+    </div>
+
+    <div class="mb-3">
+        <div class="form-group">
+            <label for="make">
+                <h5 class="m-0 mt-2">Make</h5>
+            </label>
+            <select id="make" name="makeId" class="form-control" [(ngModel)]="filter.makeId" (change)="onFilterChange()" #make="ngModel">
+                <option value=""></option>
+                <option *ngFor="let make of makes" value="{{make.id}}">{{make.name}}</option>
+            </select>
+    
+            <label for="model">
+                <h5 class="m-0 mt-2">Model</h5>
+            </label>
+            <select id="model" name="modelId" class="form-control" [(ngModel)]="filter.modelId" (change)="onFilterChange()">
+                <option value=""></option>
+                <option *ngFor="let model of models" value="{{model.id}}">{{model.name}}</option>
+            </select>
+        </div>
+        <button class="btn btn-secondary" (click)="resetFilter()">Reset Filter</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th *ngFor="let column of columns" score="col">
+                    <div *ngIf="column.isSortable" (click)="sortBy(column.key)">
+                        {{column.title}}
+                        <i *ngIf="filter.sortBy === column.key" class="fa" 
+                        [class.fa-sort-asc]="!filter.isSortAscending"
+                        [class.fa-sort-desc]="filter.isSortAscending"
+                        ></i>
+                    </div>
+                    <div *ngIf="!column.isSortable">{{column.title}}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vehicle of vehicles">
+                <th score="row">{{vehicle.id}}</th>
+                <td>{{vehicle.make.name}}</td>
+                <td>{{vehicle.model.name}}</td>
+                <td>{{vehicle.contact.name}}</td>
+                <td>
+                    <a [routerLink]="['/vehicles/' + vehicle.id]">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="totalPages > 1" class="text-center mt-3">
+        <button *ngFor="let page of createRange(totalPages)" class="btn" (click)="onChangedPage(page)" 
+        [class.btn-primary]="filter.page == page"
+        [class.btn-secondary]="filter.page != page">
+            {{page}}
+        </button>
+    </div>
+</div>

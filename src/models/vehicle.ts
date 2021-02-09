@@ -4,7 +4,7 @@ import { Feature } from "./feature";
 
 export interface Vehicle {
     id: number;
-    made: { id: number, name: string };
+    make: { id: number, name: string };
     model: { id: number, name: string };
     contact: Contact;
     isRegistered: boolean;

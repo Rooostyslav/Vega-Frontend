@@ -2,6 +2,9 @@
     <div>
         {{ vehicle | json }}
     </div>
+    <div>
+        <button class="btn btn-primary" [routerLink]="['/vehicles']">Bact To List</button>
+    </div>
     <h1>Create New Vehicle</h1>
     <form #form="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
