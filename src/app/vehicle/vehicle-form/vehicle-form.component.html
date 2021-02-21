@@ -2,9 +2,7 @@
     <div>
         {{ vehicle | json }}
     </div>
-    <div>
-        <button class="btn btn-primary" [routerLink]="['/vehicles']">Bact To List</button>
-    </div>
+    <button class="btn btn-primary mt-2 mb-2" [routerLink]="['/vehicles']">Back to Vehicle list</button>
     <h1>Create New Vehicle</h1>
     <form #form="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -55,7 +53,7 @@
             </select>
             <div class="alert alert-danger" *ngIf="contact.touched && !contact.valid">Please select Contact</div>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
+        <button class="btn btn-primary mr-2" type="submit" [disabled]="!form.valid">Save</button>
         <button *ngIf="vehicle.id" class="btn btn-danger" type="button" (click)="onDelete()">Delete</button>
     </form>
 </div>

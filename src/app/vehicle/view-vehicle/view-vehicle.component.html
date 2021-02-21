@@ -1,0 +1,74 @@
+<div class="container">
+    <div>
+        {{vehicle | json}}
+    </div>
+
+    <div>
+        {{ photo }}
+    </div>
+    
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" data-toggle="tab" role="tab" id="nav-vehicle-info" href="#nav-vehicle" aria-controls="nav-vehicle" aria-selected="true">
+                Vehicle
+            </a>
+            <a class="nav-item nav-link" data-toggle="tab" role="tab" id="nav-vehicle-photos" href="#nav-photos" aria-controls="nav-photos" aria-selected="false">
+                Photos
+            </a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show mt-2 active" role="tabpanel" aria-labelledby="nav-vehicle-info" id="nav-vehicle">
+            <div>
+                <h1 class="bolt">Basics</h1>
+                <ul>
+                    <li>Make: {{vehicle.make.name}}</li>
+                    <li>Model: {{vehicle.model.name}}</li>
+                    <li>Registered: {{vehicle.isRegistered ? 'Yes' : 'No'}}</li>
+                </ul>
+            </div>
+            <div>
+                <h1 class="bolt">Features</h1>
+                <ul>
+                    <li *ngFor="let feature of vehicle.features">{{feature.name}}</li>
+                </ul>
+            </div>
+            <div>
+                <h1 class="bolt">Contact</h1>
+                <ul>
+                    <li>Contact Name: {{vehicle.contact.name}}</li>
+                    <li>Contact Phone: {{vehicle.contact.phone}}</li>
+                    <li>Contact Email: {{vehicle.contact.email}}</li>
+                </ul>
+            </div>
+            <div>
+                <h6>Additional</h6>
+                <ul>
+                    <li>Last update: {{getDate()}}</li>
+                </ul>
+            </div>
+            <div class="mt-2">
+                <button class="btn btn-primary mr-1" [routerLink]="['/vehicles/edit/' + vehicle.id]">Edit</button>
+                <button class="btn btn-danger mr-1" (click)="onDelete()">Delete</button>
+                <button class="btn btn-secondary" [routerLink]="['/vehicles']">View All Vehicles</button>
+            </div>
+        </div>
+
+        <div class="tab-pane fade mt-2" role="tabpanel" aria-labelledby="nav-vehicle-photos" id="nav-photos">
+
+            <div>{{photos | json}}</div>
+
+            <h2>Photos</h2>
+            <input type="file" name="photo" id="photo" (change)="uploadPhoto()" #fileInput>
+
+            <div class="m-3">
+                <img  [src]="photo" class="" alt="photo">
+            </div>
+
+            <div class="m-3">
+                <p>{{photo | json}}</p>
+            </div>
+            
+        </div>
+    </div>
+</div>

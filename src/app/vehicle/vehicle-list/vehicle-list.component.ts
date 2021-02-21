@@ -45,8 +45,13 @@ export class VehicleListComponent implements OnInit {
   private populateVehicles() {
     this.vehicleService.getVehicles(this.filter)
       .subscribe(result => {
-        this.vehicles = result.items;
-        this.totalPages = Math.ceil(result.totalItems / this.filter.pageSize);
+        if (!result || result.totalItems == 0) {
+          this.totalPages = 0;
+          this.vehicles = null;
+        } else {
+          this.vehicles = result.items;
+          this.totalPages = Math.ceil(result.totalItems / this.filter.pageSize);
+        }
       });
   }
 
